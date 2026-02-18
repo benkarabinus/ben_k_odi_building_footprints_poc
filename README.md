@@ -278,7 +278,3 @@ databricks jobs create --json-file job_config.json
 | **Geospatial** | Snowflake ST functions | Databricks ST functions |
 | **CI/CD** | dbt Cloud / GitHub Actions | Databricks CLI + GitHub Actions |
 | **Output Formats** | GeoParquet, Shapefile | GeoParquet, Shapefile |
-
-## License
-
-MIT License - See [LICENSE](LICENSE)
