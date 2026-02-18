@@ -10,7 +10,7 @@ This project processes Microsoft's Global ML Building Footprints for California,
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                        Databricks Job                                 │
+│                        Databricks Job                                       │
 ├─────────────────────────────────────────────────────────────────────────────┤
 │                                                                             │
 │  ┌──────────────────────┐    ┌──────────────────────┐                       │
@@ -135,6 +135,8 @@ This project processes Microsoft's Global ML Building Footprints for California,
 - Serverless compute or cluster with:
   - Runtime 14.3 LTS or higher
   - Access to install PyPI packages
+- Refer to this public repo as an example of basic Azure Databricks workspace creation through infrastructure as code (IAC)
+   - [azure_databricks_basic_private_connectivity](https://github.com/benkarabinus/azure_databricks_basic_private_connectivity)
 
 ### Unity Catalog Setup
 
