@@ -1,0 +1,46 @@
+resources:
+  jobs:
+    odi_building_footprints:
+      name: odi_building_footprints
+      tasks:
+        - task_key: Load_Microsoft_global_ml_building_footprints
+          notebook_task:
+            notebook_path: /Workspace/Users/benkarabinus@mngenvmcap735986.onmicrosoft.com/odi_building_footprints_poc/notebooks/load_global_ml_building_footprints_ca
+            source: WORKSPACE
+        - task_key: load_census_tiger_line_shape_files
+          notebook_task:
+            notebook_path: /Workspace/Users/benkarabinus@mngenvmcap735986.onmicrosoft.com/odi_building_footprints_poc/notebooks/load_census_tiger_line_shape_files
+            source: WORKSPACE
+        - task_key: join_odi_building_footprints_with_census_blocks
+          depends_on:
+            - task_key: Load_Microsoft_global_ml_building_footprints
+            - task_key: load_census_tiger_line_shape_files
+          notebook_task:
+            notebook_path: /Workspace/Users/benkarabinus@mngenvmcap735986.onmicrosoft.com/odi_building_footprints_poc/notebooks/join_odi_building_footprints_with_census_blocks
+            source: WORKSPACE
+        - task_key: publish_odi_footprints_with_census_blocks
+          depends_on:
+            - task_key: join_odi_building_footprints_with_census_blocks
+          notebook_task:
+            notebook_path: /Workspace/Users/benkarabinus@mngenvmcap735986.onmicrosoft.com/odi_building_footprints_poc/notebooks/publish_odi_footprints_with_census_blocks_data
+            source: WORKSPACE
+      queue:
+        enabled: true
+      parameters:
+        - name: catalog
+          default: odi_datalake
+        - name: catalog_storage_location
+          default: odi_datalake
+        - name: schema_name
+          default: odi_bronze
+        - name: schema_storage_location
+          default: odi_datalake
+        - name: source_table
+          default: odi_datalake.odi_silver.building_footprints_with_blocks_and_places_
+        - name: state
+          default: CA
+        - name: tiger_year
+          default: "2020"
+        - name: volume_path
+          default: /Volumes/odi_datalake/odi_gold/global_ml_building_footprints
+      performance_target: PERFORMANCE_OPTIMIZED
